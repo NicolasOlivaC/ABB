@@ -1,0 +1,101 @@
+<% include ../header %>
+
+
+<!-- ACA COMIENZA EL MAIN--> <!-- ACA COMIENZA EL MAIN-->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+          <center><div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><center><h4>Eliminar registro de venta</h4></center></div>
+                      <p>
+                     <form action="/deleteRegistroVenta" method="post">
+
+                              <div class="form-group">
+                                <div class="form-group">
+                                  <input type="text" name = "id_ventas" required placeholder="ID de venta" class="form-control">
+                               </div>
+                              </div>
+                              <center><button type="submit" class="btn btn-primary">
+                                Eliminar
+                              </button></center>
+
+                              <p>
+                                <% if(mensaje5.length>0) { %>
+                                    <center><div class="alert alert-dark" role="alert">
+                                    <%=mensaje5%> 
+                                  </div></center>
+                                  <%} %>
+
+                            </form>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </center>
+
+          <!-- DataTales Example -->
+
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">¿Quieres salir?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">¿Estás seguro de que quieres cerrar sesión?</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <a class="btn btn-primary" href="/logout">Cerrar sesión</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="js/demo/datatables-demo.js"></script>
+
+</body>
+
+</html>

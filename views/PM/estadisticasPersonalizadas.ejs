@@ -1,0 +1,138 @@
+<% include ../header %>
+
+    <body onload="grafico(<%= JSON.stringify(data)%>)"></body>
+    <div class="row">
+
+
+        <div class="card shadow mb-4" style="margin: auto 40px; width: 100% ;">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Histórico de ventas por motor - <%= fecha_i.toString() %> a <%= fecha_f.toString() %></h6>
+            </div>
+            <div class="card-body">
+                <div class="chart-area">
+                    <element></element>
+                    <canvas id="myChart" ></canvas>
+              <center>
+                <form action="/estadisticasPersonalizadas" method="post">
+                        Desde:
+                        <input type="date" name="fecha_inicial" value="<%= fecha_i %>" min="2018-01-01" max="2024-12-31">
+                        Hasta:
+                        <input type="date" name="fecha_final" value="<%= fecha_f %>" min="2018-01-01" max="2024-12-31">
+                        <button type="submit" class="btn btn-primary">
+                            Filtrar
+                        </button>
+                        </form>
+                        </center>
+                        <a id="downloadArea" download="historico_ventaspormotor.png" href=""
+                            class="btn btn-primary float-right bg-flat-color-1" title="Descargar gráfico">
+                            <i class="fa fa-download"></i>
+                        </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">¿Quieres salir?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">¿Estás seguro de que quieres cerrar sesión?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" href="/logout">Cerrar sesión</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+
+
+    <script>
+        function grafico(input) {
+            let arrayX = new Array();
+            let arrayY = new Array();
+            for (i = 0; i < input.length; i++) {
+                arrayX.push(input[i].catalog_number);
+                arrayY.push(input[i].suma_cantidad);
+
+            }
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: arrayX,
+                    datasets: [{
+                        label: 'Ventas por Motores',
+                        data: arrayY,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+        }
+
+    </script>
+    <!-- <script src="js/stockxmotor.js"></script>
+  <script src="js/comprasxcliente.js"></script>
+  <script src="js/ventasxmotor.js"></script> -->
+
+    </body>
+
+    </html>

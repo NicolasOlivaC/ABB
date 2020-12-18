@@ -1,0 +1,132 @@
+<% include ../header %>
+
+  <div class="container-fluid">
+    <h1 class="h3 mb-2 text-gray-800">Estadísticas</h1>
+    <div class="row">
+      <div class="col-xl-12 col-lg-16">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Stock por motor</h6>
+          </div>
+          <div class="card-body">
+            <div class="chart-area">
+              <canvas id="myAreaChart"></canvas>
+              <a id="dlstockxmotor" download="ChartImage.png" href="" class="btn btn-primary float-right bg-flat-color-1"
+                title="Descargar grafico">
+                <i class="fa fa-download"></i>
+              </a>
+            </div>
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xl-6 col-lg-7">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Histórico de compras por cliente</h6>
+          </div>
+          <div class="card-body">
+            <div class="chart-area">
+              <canvas id="comprasxcliente"></canvas>
+              <center>
+                <form action="estadisticasPersonalizadas" method="post">
+                  Desde:
+                  <input type="date" name="fecha_inicial" value="2018-01-01" min="2018-01-01" max="2024-12-31">
+                  Hasta:
+                  <input type="date" name="fecha_final" value="2020-12-31" min="2018-01-01" max="2024-12-31">
+                  <button type="submit" class="btn btn-primary">
+                    Filtrar
+                  </button>
+                </form>
+              </center>
+              <a id="dlcomprasxcliente" download="ChartImage.png" href=""
+                class="btn btn-primary float-right bg-flat-color-1" title="Descargar grafico">
+                <i class="fa fa-download"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-7">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Histórico de ventas por motor</h6>
+          </div>
+          <div class="card-body">
+            <div class="chart-area">
+              <canvas id="ventasxmotor"></canvas>
+              <center>
+                <form action="/estadisticasPersonalizadas" method="post">
+                  Desde:
+                  <input type="date" name="fecha_inicial" value="2018-01-01" min="2018-01-01" max="2024-12-31">
+                  Hasta:
+                  <input type="date" name="fecha_final" value="2020-12-31" min="2018-01-01" max="2024-12-31">
+                  <button type="submit" class="btn btn-primary">
+                    Filtrar
+                  </button>
+                </form>
+              </center>
+              <a id="dlventasxmotor" download="ChartImage.png" href=""
+                class="btn btn-primary float-right bg-flat-color-1" title="Descargar grafico">
+                <i class="fa fa-download"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+  </div>
+  </div>
+
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">¿Quieres salir?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">¿Estás seguro de que quieres cerrar sesión?</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <a class="btn btn-primary" href="/logout">Cerrar sesión</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="vendor/chart.js/Chart.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="js/stockxmotor.js"></script>
+  <script src="js/comprasxcliente.js"></script>
+  <script src="js/ventasxmotor.js"></script>
+
+  </body>
+
+  </html>

@@ -1,0 +1,191 @@
+<% include ../header %>
+
+  <div class="container-fluid">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAgregar"> Agregar Usuario</button>
+        <% if(mensaje2.length>0) { %>
+          <body onload="mensaje('<%=mensaje2%>')"></body>
+        <%} %>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+              <tr style="text-align: center;">
+                <th>Nombre</th>
+                <th>RUT</th>
+                <th>Correo electronico</th>
+                <th>Tipo de Usuario</th>
+                <th>Deshabilitar</th>
+                <th>Modificar</th>
+                <th>Eliminar</th>
+              </tr>
+            </thead>
+            <tbody id="contenido" style = "text-align:center" >
+              <% if(data){ %>
+                <% for (i=0; i < data.length; i++ ) { %>
+                  <tr>
+                    <td><%= data[i].name%></td>
+                    <td><%= data[i].rut_users%></td>
+                    <td><%= data[i].email%></td>
+                    <td><%= data[i].tipo%></td>
+                    <td><a onclick="eliminarUsuario('/deleteusuario2/<%= data[i].id_users%>')" role="button"> <i class="fas fa-handshake-slash"></i> </a> </td>
+                    <td>
+                      <a data-toggle="modal" data-target="#modalModif" onclick=" modificarUsuario('<%= data[i].name%>', '<%= data[i].rut_users%>', 
+                        '<%= data[i].email%>', '<%= data[i].tipo%>')" role="button"><i class="fas fa-edit"></i>
+                      </a>
+                    </td>
+                    <td><a onclick="eliminarUsuario('/deleteusuario2/<%= data[i].id_users%>')" role="button"><i class="fas fa-trash-alt"></i></a></td>
+                  </tr>
+                <%}%>
+              <%}%>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalAgregar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+          <h4 style="text-align : center; margin:10px auto;">Agregar Usuario</h4>
+        </div>
+        <div class="modal-body" style="padding-top:0">
+          <div class="card-body" style="padding-top:0">
+            <form action="/signup2" method="POST" name="agregar">
+              <div class="form-group">
+                <input type="text" name="name" placeholder="Nombre" required class="form-control" autofocus>
+              </div>
+              <div class="form-group">
+                <input type="text" name="rutadd" placeholder="RUT" class="form-control" required
+                  onfocusout="checkRut(this)" minlength="11" maxlength="12">
+              </div>
+              <div class="form-group">
+                <input type="email" name="email" required placeholder="Correo electronico" class="form-control">
+              </div>
+              <div class="form-group">
+                <select class="form-control" name="tipo">
+                  <option value="PM">Product Manager</option>
+                  <option value="EL">Encargado de logística</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-success" id="botonadd"
+                style="display: block; margin : 15px auto;">Agregar Usuario</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalModif" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+          <h4 style="text-align: center; margin-top:15px;">Modificar Usuario</h4>
+        </div>
+        <div class="modal-body" style ="padding-top:0px">
+          <div class="card-body"  style ="padding-top:0px">
+            <form action="/modusuario" method="POST" name="modificar">
+              <div class="form-group">
+                Nombre completo del usuario
+                <input id="modUsua1" type="text" name="name" required placeholder="Nombre" class="form-control" required
+                  autofocus>
+              </div>
+              <div class="form-group">
+                Rut del Usuario
+                <input id="modUsua2" type="text" name="rut_users" readonly placeholder="RUT" class="form-control" required autofocus>
+              </div>
+              <div class="form-group">
+                Email del usuario
+                <input id="modUsua3" type="text" name="email" required placeholder="Correo electrónico" class="form-control">
+              </div>
+              <div class="form-group">
+                Tipo de usuario
+                <select class="form-control" name="tipo" id="modUsua4">
+                  <option value="PM">Product Manager</option>
+                  <option value="EL">Encargado de logística</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary" id="botonmod" style = "display:block; margin-right: auto; margin-left: auto;" "> Modificar Usuario</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+  <!-- End of Content Wrapper -->
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">¿Quieres salir?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">¿Estás seguro de que quieres cerrar sesión?</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <a class="btn btn-primary" href="/logout">Cerrar sesión</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="js/demo/datatables-demo.js"></script>
+  <script>
+    $(function () {
+      $("input[name='rutadd']").on('input', function (e) {
+        $(this).val($(this).val().replace(/(K)/g, 'k').replace(/[^0-9+k]/g, ''));
+      });
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.4/dist/sweetalert2.all.min.js"></script>
+  <script src="prueba.js"></script>
+
+  </body>
+
+</html>

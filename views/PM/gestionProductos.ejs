@@ -1,0 +1,280 @@
+<% include ../header %>
+
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="container-fluid">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal1">
+              Agregar Motor
+            </button>
+            <% if(mensaje3.length>0) { %>
+              <body onload="mensaje('<%=mensaje3%>')"></body>
+            <%} %>
+            <% if(mensaje2.length>0) { %>
+              <body onload="mensaje('<%=mensaje2%>')"></body>
+            <%} %>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead style = "text-align: center;">
+                  <tr>
+                    <th >Catalog Number</th>
+                    <th>HP</th>
+                    <th>RPM</th>
+                    <th>Nema Frame</th>
+                    <th>Enclosure</th>
+                    <th>List Price</th>
+                    <th>Disc Sym</th>
+                    <th>C dim</th>
+                    <th>Aprox wt</th>
+                    <th>Full load efficiency</th>
+                    <th>voltage</th>
+                    <th>Full load amps</th>
+                    <th>notes</th>
+                    <th>Modificar</th>
+                    <th>Eliminar</th>
+                  </tr>
+                </thead>
+                <tbody style = "text-align:center">
+                  <% if(data){ %>
+                    <% for (i=0; i < data.length; i++ ) { %>
+                      <tr class = "barra-tr">
+                        <td><%= data[i].catalog_number %></td>
+                        <td><%= data[i].hp%></td>
+                        <td><%= data[i].rpm%></td>
+                        <td><%= data[i].nema_frame%></td>
+                        <td><%= data[i].enclosure%></td>
+                        <td><%= data[i].list_price%></td>
+                        <td><%= data[i].disc_sym%></td>
+                        <td><%= data[i].c_dim%></td>
+                        <td><%= data[i].aprx_wt%></td>
+                        <td><%= data[i].full_load_efficiency%></td>
+                        <td><%= data[i].voltage%></td>
+                        <td><%= data[i].full_load_amps%></td>
+                        <td><%= data[i].notes%></td>
+                        <td>
+                          <a data-toggle="modal" data-target="#exampleModalCenter" onclick=" mostrar( '<%= data[i].catalog_number%>', '<%= data[i].hp%> ',
+                            '<%= data[i].rpm%>', '<%= data[i].nema_frame%>', '<%= data[i].enclosure%>', '<%= data[i].list_price%>', '<%= data[i].disc_sym%>',
+                            '<%= data[i].c_dim%>', '<%= data[i].aprx_wt%>', '<%= data[i].full_load_efficiency%>', '<%= data[i].voltage%>', 
+                            '<%= data[i].full_load_amps%>', '<%= data[i].notes%>' ) " role="button"><i class="fas fa-edit"></i>
+                          </a>
+                        </td>
+                        <td>
+                          <a onclick="showw('/deleteProducto2/<%= data[i].id_motores%>')" role="button"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                      </tr>
+                    <% } %>
+                  <% } %>
+                </tbody>
+              </table>
+           </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+            <h4 style = "text-align: center; margin-top:15px">Agregar Motor</h4>
+          </div>
+          <div class="modal-body" style="padding-top:0px;">
+            <form action="/cons_ins_producto" method="post" align='center'>
+              <div class="form-group">
+                <input type="text" name="catalog_number" required placeholder="Catalog Number" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="text" name="hp" required placeholder="HP" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="text" name="rpm" required placeholder="RPM" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="text" name="nema_frame" required placeholder="NEMA frame" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="text" name="enclosure" required placeholder="Enclosure" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="text" name="list_price" required placeholder="List Price" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="text" name="disc_sym" required placeholder="Disc Sym" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="text" name="c_dim" required placeholder="C dim" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="text" name="aprx_wt" required placeholder="Aprox wt" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="text" name="full_load_efficiency" required placeholder="Full load efficiency"
+                  class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="text" name="voltage" required placeholder="Voltage" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="text" name="full_load_amps" required placeholder="Full load amps" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="text" name="notes" required placeholder="Notes" class="form-control">
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary">Agregar Motor</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" style="padding-top:0px">
+            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="padding-bottom:0px">
+              <h4 style="text-align: center; margin-top:20px; margin-bottom: 0px;">Modificar Motor</h4>
+            </div>
+            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+              <div class="card-body">
+                <form action="/updateProducto" method="post" align='center'>
+                  <div class="form-group">
+                    <input id="catag1" type="text" name="catalog_number" required placeholder="Catalog Number"
+                      class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <input id="catag2" type="text" name="hp" required placeholder="HP" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <input id="catag3" type="text" name="rpm" required placeholder="RPM" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <input id="catag4" type="text" name="nema_frame" required placeholder="NEMA frame"
+                      class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <input id="catag5" type="text" name="enclosure" required placeholder="Enclosure"
+                      class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <input id="catag6" type="text" name="list_price" required placeholder="List Price"
+                      class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <input id="catag7" type="text" name="disc_sym" required placeholder="Disc Sym" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <input id="catag8" type="text" name="c_dim" required placeholder="C dim" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <input id="catag9" type="text" name="aprx_wt" required placeholder="Aprox wt" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <input id="catag10" type="text" name="full_load_efficiency" required
+                      placeholder="Full load efficiency" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <input id="catag11" type="text" name="voltage" required placeholder="Voltage" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <input id="catag12" type="text" name="full_load_amps" required placeholder="Full load amps"
+                      class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <input id="catag13" type="text" name="notes" required placeholder="Notes" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Modificar Motor</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">¿Quieres salir?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">¿Estás seguro de que quieres cerrar sesión?</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <a class="btn btn-primary" href="/logout">Cerrar sesión</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="js/demo/datatables-demo.js"></script>
+
+  <script>
+    function onlyNumberKey(evt) {
+
+      // Only ASCII charactar in that range allowed
+      var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+      if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+        return false;
+      return true;
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.4/dist/sweetalert2.all.min.js"></script>
+  <script src="prueba.js"></script>
+
+
+  <script>
+    function obtener (input){
+      console.log(input)
+    }
+  </script>
+
+
+  </body>
+
+  </html>
+
+
+

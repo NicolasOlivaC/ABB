@@ -1,0 +1,126 @@
+<% include ../header %>
+
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-4 col-md-6 mb-4" style="margin: 0 auto;">
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                  <h4 style="text-align: center;">MODIFICAR STOCK</h4>
+                </div>
+                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                  <div class="card-body">
+                    <form action="/updateStock" method="post">
+                      <div class="form-group">
+                        <input type="text" name="motores_catalog_number" placeholder="Catalog Number" class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <input type="text" name="stock_minimo" placeholder="Stock sugerido" class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <input type="text" name="stock" placeholder="Stock de Producto" class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <button type="submit" class="btn btn-primary" style=" display: block; margin-left: auto; margin-right: auto;">Modificar stock</button>
+                      </div>
+                      <% if(mensaje.length>0) { %>
+                        <div class="alert alert-dark" role="alert" style="text-align: center;">
+                          <%=mensaje%>
+                        </div>
+                      <%} %>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary"></h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+              <tr style="text-align:center;">
+                <th>Catalog Number</th>
+                <th>Stock sugerido</th>
+                <th>Stock de Producto</th>
+              </tr>
+            </thead>
+            <tbody id="contenido" style="text-align:center;">
+              <% if(data){ %>
+                <% for (i=0; i < data.length; i++ ) { %>
+                  <tr>
+                    <td><%= data[i].motores_catalog_number%></td>
+                    <td><%= data[i].stock_minimo%></td>
+                    <td><%= data[i].stock%></td>
+                  </tr>
+                <% } %>
+              <% } %>
+            </tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+  </div>
+  </div>
+
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">¿Quieres salir?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">¿Estás seguro de que quieres cerrar sesión?</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <a class="btn btn-primary" href="/logout">Cerrar sesión</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="js/demo/datatables-demo.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.4/dist/sweetalert2.all.min.js"></script>
+  <script src="prueba.js"></script>
+
+  </body>
+
+  </html>

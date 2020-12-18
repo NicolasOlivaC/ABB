@@ -1,0 +1,99 @@
+<% include header %>
+
+<!-- ACA COMIENZA EL MAIN--> <!-- ACA COMIENZA EL MAIN-->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+            <center><div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><center><h4>GENERAR SOLICITUD DE REPOSICIÓN</h4></center></div>
+                        <p>
+                       <form action="/cambiarClave" method="post">
+  
+                                <div class="form-group">
+                                  <div class="form-group">
+                                    Contraseña actual
+                                    <input type="password" name = "actpassword"  required placeholder="Contraseña actual" class="form-control">
+                                  </div>
+                                  <div class="form-group">
+                                    Nueva contraseña
+                                    <input type="password" name = "neopassword"  required placeholder="Contraseña nueva" class="form-control">
+                                  </div>
+                                  <div class="form-group">
+                                    Vuelva a escribir la nueva contraseña
+                                    <input type="password" name = "neopassworddos"  required placeholder="Contraseña nueva" class="form-control">
+  
+                                <center><button type="submit" class="btn btn-primary">
+                                  Cambiar contraseña
+                                </button></center>
+
+                               
+                               
+                            </form>
+
+                            <% if(mensaje4.length>0) { %>
+                                <center><div class="alert alert-warning" role="alert">
+                                  <%=mensaje4%> 
+                                </div></center>
+                            <%} %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </center>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">¿Quieres salir?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">¿Estás seguro de que quieres cerrar sesión?</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <a class="btn btn-primary" href="/logout">Cerrar sesión</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="js/demo/datatables-demo.js"></script>
+
+</body>
+
+</html>
