@@ -1,0 +1,132 @@
+<% include ../header %>
+
+  <div class="container-fluid">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <% if(mensaje.length>0) { %>
+          <body onload="mensaje('<%=mensaje%>')"></body>
+        <%} %>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+              <tr style="text-align:center;">
+                <th>Catalog Number</th>
+                <th>Stock sugerido</th>
+                <th>Stock de Producto</th>
+                <th>Modificar stock</th>
+              </tr>
+            </thead>
+            <tbody id="contenido" style="text-align:center;">
+              <% if(data){ %>
+                <% for (i=0; i < data.length; i++ ) { %>
+                  <tr class = "barra-tr" >
+                    <td><%= data[i].motores_catalog_number%></td>
+                    <td><%= data[i].stock_minimo%></td>
+                    <td><%= data[i].stock%></td>
+                    <td>
+                      <a data-toggle="modal" data-target="#modal1" onclick=" modificarStock( '<%= data[i].catalog_number%>', '<%= data[i].stock_minimo%>', '<%= data[i].stock%>') " role="button"><i class="fas fa-edit"></i>
+                      </a>
+                    </td>
+                  </tr>
+                <% } %>
+              <% } %>
+            </tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+          <h4 style = "text-align: center; margin-top:15px">Agregar Motor</h4>
+        </div>
+        <div class="modal-body" style="padding-top:0px;">
+          <form action="/updateStock" method="post">
+            <div class="form-group">
+              <input type="text" id = "modifStock1" name="motores_catalog_number" placeholder="Catalog Number" class="form-control" readonly>
+            </div>
+            <div class="form-group">
+              <input type="text" id = "modifStock2" name="stock_minimo" placeholder="Stock sugerido" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <input type="text" id = "modifStock3" name="stock" placeholder="Stock de Producto" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary" style=" display: block; margin-left: auto; margin-right: auto;">Modificar stock</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  </div>
+  </div>
+  </div>
+
+
+
+
+
+  
+
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">¿Quieres salir?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">¿Estás seguro de que quieres cerrar sesión?</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <a class="btn btn-primary" href="/logout">Cerrar sesión</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="js/demo/datatables-demo.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.4/dist/sweetalert2.all.min.js"></script>
+  <script src="prueba.js"></script>
+
+  </body>
+
+  </html>

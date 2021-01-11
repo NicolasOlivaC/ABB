@@ -1,0 +1,139 @@
+<% include header %>
+
+
+
+
+<!-- ACA COMIENZA EL MAIN--> <!-- ACA COMIENZA EL MAIN-->
+
+
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+          <% if(mensaje4.length>0) { %>
+            <center><div class="alert alert-danger" role="alert">
+              <%=mensaje4%> 
+            </div></center>
+          <%} %>
+          <% if ( message.length>0 ) { %>
+            <center><div class="alert alert-success"><%= message %></div></center>
+          <% } %>
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Inicio</h1><i class="fas fa-chart-bar fa-l fa-fw mr-2 text-gray-400"></i>
+          </div>
+          
+
+          <!-- Content Row -->
+
+          <div class="row">
+
+            <!-- Area Chart -->
+            <div class="col-xl-6 col-lg-7">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Histórico de compras por cliente</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-area">
+                    <canvas id="comprasxcliente"></canvas>
+                    <a id="downloadArea"
+                      download = "historico_comprasporcliente.png"
+                      href = ""
+                      class = "btn btn-primary float-right bg-flat-color-1"
+                      title = "Descargar grafico">
+                    <i class = "fa fa-download"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Area Chart -->
+             <div class="col-xl-6 col-lg-7">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Histórico de ventas por motor</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-area">
+                    <canvas id="ventasxmotor"></canvas>
+                    <a id="downloadArea"
+                      download = "historico_ventaspormotor.png"
+                      href = ""
+                      class = "btn btn-primary float-right bg-flat-color-1"
+                      title = "Descargar grafico">
+                    <i class = "fa fa-download"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+          </div>
+
+          <!-- Content Row -->
+          <div class="row">
+
+
+
+      <!-- End of Main Content -->
+
+
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">¿Quieres salir?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">¿Estás seguro de que quieres cerrar sesión?</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <a class="btn btn-primary" href="/logout">Cerrar sesión</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="vendor/chart.js/Chart.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="js/comprasxcliente.js"></script>
+  <script src="js/ventasxmotor.js"></script>
+
+</body>
+
+</html>
